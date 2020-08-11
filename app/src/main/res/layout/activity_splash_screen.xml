@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/container"
+    android:gravity="center_horizontal"
+    tools:context=".SplashScreenActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_normal"/>
+
+    <ImageView
+        android:padding="@dimen/dimen_small"
+        android:adjustViewBounds="true"
+        android:src="@drawable/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView_appName"
+            android:textColor="@android:color/black"
+            android:text="O"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="top"
+            android:id="@+id/textView_appName2"
+            android:textColor="@android:color/black"
+            android:text="2"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/textView_appName3"
+            android:textColor="@android:color/black"
+            android:text=" To Go"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_normal"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:padding="@dimen/dimen_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/heart_beat"
+        />
+</LinearLayout>

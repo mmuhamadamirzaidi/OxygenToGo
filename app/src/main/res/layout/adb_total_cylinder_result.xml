@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+
+    android:padding="@dimen/dimen_normal"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Jumlah silinder yang perlu adalah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_normal"/>
+
+        <TextView
+            android:id="@+id/textView_label"
+            android:text="2 silinder"
+            android:textSize="25sp"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_normal"/>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/button_close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="#3b5998"
+            fancy:fb_focusColor="#5577bd"
+            fancy:fb_fontIconSize="15sp"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="Kembali"
+            fancy:fb_textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+</FrameLayout>

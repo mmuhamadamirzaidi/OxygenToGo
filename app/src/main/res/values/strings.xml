@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">O² To Go</string>
+    <string name="type_of_cylinder">Jenis silinder</string>
+    <string name="type_of_mask">Jenis mask @ ventilator</string>
+    <string name="starting_location">Lokasi Mula</string>
+    <string name="pilih_lokasi_mula">Pilih Lokasi Mula</string>
+    <string name="ending_location">Lokasi Akhir</string>
+    <string name="pilih_lokasi_akhir">Pilih Lokasi Akhir</string>
+    <string name="pressure_left">Baki Tekanan Oksigen</string>
+    <string name="choose_location">Pilih Lokasi</string>
+    <string name="pilih_lokasi">Pilih Lokasi</string>
+    <string name="location">Lokasi</string>
+    <string name="references_notes">Rujukan @ Nota</string>
+    <string name="contact_us">Hubungi Kami</string>
+    <string name="phone">En. Siva @ En. Fadli</string>
+    <string name="phone_2">+604 &#8211; 3827333 </string>
+    <string name="phone_3"> ex 285</string>
+    <string name="hint">Petunjuk</string>
+    <string name="hint_isipadu">Isipadu silinder: Mengikut jenis silinder (tetap)</string>
+    <string name="hint_isipadu_2">D: 500ml\nE: 700ml\nF: 1400ml </string>
+    <string name="hint_pressure">Tekanan pada meter regulator (p)</string>
+    <string name="hint_pressure_2">Min: 200\nMax: 2000</string>
+    <string name="hint_flow">Flow rate (L)</string>
+    <string name="hint_flow_2">Nasal Prong: 1&#8211;5L\nFace Mask: 5&#8211;8L\nHighflow Mask: 8&#8211;15L\nVentilator: 25L</string>
+    <string name="formula">Cara kira</string>
+    <string name="formula_2">Isipadu yang\ndiperlukan</string>
+    <string name="formula_3">Tempoh yang diperlukan * Flow rate * 2000</string>
+    <string name="formula_4">Tekanan pada regulator (p)</string>
+    <string name="symbol_equal">=</string>
+
+    <string-array name="cylinder_type">
+        <item>Silinder D</item>
+        <item>Silinder E</item>
+        <item>Silinder F</item>
+    </string-array>
+</resources>

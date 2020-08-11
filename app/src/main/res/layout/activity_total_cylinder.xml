@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".TotalCylinderActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:padding="@dimen/dimen_normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="@string/type_of_cylinder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spinner_cylinder_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_normal"/>
+
+        <TextView
+            android:text="@string/type_of_mask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spinner_mask_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dsb_min="2"
+            app:dsb_max="15"
+            android:id="@+id/seekBar" />
+
+        <TextView
+            android:id="@+id/textView_indicator"
+            android:layout_gravity="center_horizontal"
+            android:text="5L/min"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_normal"/>
+
+        <TextView
+            android:text="@string/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/button_location2"
+            android:text="@string/pilih_lokasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/button_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/button_success"
+            fancy:fb_focusColor="@color/button_success_focus"
+            fancy:fb_fontIconSize="15sp"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="Pilih Lokasi"
+            fancy:fb_textColor="#FFFFFF"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_normal"/>
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/button_calculate2"
+            android:text="KIRA!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/button_calculate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/button_primary"
+            fancy:fb_focusColor="@color/button_primary_focus"
+            fancy:fb_fontIconSize="15sp"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="Kira"
+            fancy:fb_textColor="#FFFFFF"/>
+    </LinearLayout>
+
+</LinearLayout>

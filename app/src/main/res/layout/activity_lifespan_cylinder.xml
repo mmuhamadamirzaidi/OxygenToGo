@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".LifespanCylinderActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:padding="@dimen/dimen_normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="@string/type_of_cylinder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spinner_cylinder_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_normal"/>
+
+        <TextView
+            android:text="@string/type_of_mask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spinner_mask_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dsb_min="2"
+            app:dsb_max="15"
+            android:id="@+id/seekBar" />
+
+        <TextView
+            android:id="@+id/textView_indicator"
+            android:layout_gravity="center_horizontal"
+            android:text="5L/min"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_normal"/>
+
+        <TextView
+            android:text="@string/pressure_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:maxLength="4"
+            android:id="@+id/editText_pressureLeft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/pressure_left"
+            android:inputType="number" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_normal"/>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/button_calculate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="#3b5998"
+            fancy:fb_focusColor="#5577bd"
+            fancy:fb_fontIconSize="15sp"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="Kira"
+            fancy:fb_textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+</LinearLayout>

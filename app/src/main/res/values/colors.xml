@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#cc3700</color>
+    <color name="colorPrimaryDark">#992900</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="button_primary">#3b5998</color>
+    <color name="button_primary_focus">#5577bd</color>
+
+    <color name="button_success">#5cb85c</color>
+    <color name="button_success_focus">#79B379</color>
+
+    <color name="button_info">#5bc0de</color>
+    <color name="button_info_focus">#75cbe5</color>
+</resources>
