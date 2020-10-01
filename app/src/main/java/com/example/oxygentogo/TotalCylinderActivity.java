@@ -250,7 +250,7 @@ public class TotalCylinderActivity extends BaseActivity implements
         String url = "https://maps.googleapis.com/maps/api/distancematrix";
         VolleyHelper volleyHelper = new VolleyHelper(this, url);
 
-        volleyHelper.get("json?origins=" + p1Lat + "," + p1Lon + "&destinations=" + p2Lat + "," + p2Lon + "&key=AIzaSyCavddnrHBb26R8M0CZERZ2jHD5Ryytzas", null, this, this);
+        volleyHelper.get("json?origins=" + p1Lat + "," + p1Lon + "&destinations=" + p2Lat + "," + p2Lon + "&key=AIzaSyCVdFH107OoF78DMIRWHYTea34ovLbhsXI", null, this, this);
     }
 
     public void showResult() {
