@@ -250,7 +250,7 @@ public class TotalCylinderActivity extends BaseActivity implements
         String url = "https://maps.googleapis.com/maps/api/distancematrix";
         VolleyHelper volleyHelper = new VolleyHelper(this, url);
 
-        volleyHelper.get("json?origins="+p1Lat+","+p1Lon+"&destinations="+p2Lat+","+p2Lon+"&key=AIzaSyCavddnrHBb26R8M0CZERZ2jHD5Ryytzas", null, this, this);
+        volleyHelper.get("json?origins=" + p1Lat + "," + p1Lon + "&destinations=" + p2Lat + "," + p2Lon + "&key=AIzaSyCavddnrHBb26R8M0CZERZ2jHD5Ryytzas", null, this, this);
     }
 
     public void showResult() {
@@ -259,8 +259,8 @@ public class TotalCylinderActivity extends BaseActivity implements
         double volumeNeeded = timeTaken * flowRate * 2000 / 2000;
         Log.e("Time Taken", timeTaken + "");
         Log.e("Flow Rate", flowRate + "");
-        Log.e("VolumeNeeded", volumeNeeded+ "");
-        double cylinderNeeded = volumeNeeded/getVolumeForCylinder(spinnerCylinder.getSelectedItemPosition());
+        Log.e("VolumeNeeded", volumeNeeded + "");
+        double cylinderNeeded = volumeNeeded / getVolumeForCylinder(spinnerCylinder.getSelectedItemPosition());
         int floor = (int) Math.ceil(cylinderNeeded);
         // Log.e("Vol4Cylinder", String.valueOf(getVolumeForCylinder(spinnerCylinder.getSelectedItemPosition())));
         // Log.e("Cylinder Needed", String.valueOf(cylinderNeeded));
@@ -360,7 +360,7 @@ public class TotalCylinderActivity extends BaseActivity implements
             String strDistance = distance.getString("text");
             String strDuration = duration.getString("text");
 
-            strLoc = "\n\n"+strDistance + " @ " + strDuration;
+            strLoc = "\n\n" + strDistance + " @ " + strDuration;
 
             String strMin = strDistance.replaceAll("[^\\d]", "");
             timeTaken = Integer.parseInt(strMin);
@@ -390,14 +390,7 @@ public class TotalCylinderActivity extends BaseActivity implements
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    googleApiClient = new GoogleApiClient
-                            .Builder(this)
-                            .enableAutoManage(this, 0, this)
-                            .addApi(Places.GEO_DATA_API)
-                            .addApi(Places.PLACE_DETECTION_API)
-                            .addConnectionCallbacks(this)
-                            .addOnConnectionFailedListener(this)
-                            .build();
+                    initializeAndConnectGoogleApi();
                 } else {
                     new AlertDialog.Builder(this)
                             .setMessage("Sila benarkan penggunaan GPS untuk menggunakan fungsi ini")
@@ -406,7 +399,7 @@ public class TotalCylinderActivity extends BaseActivity implements
                             .setPositiveButton("Cuba Lagi", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    ActivityCompat.requestPermissions(TotalCylinderActivity.this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+                                    ActivityCompat.requestPermissions(TotalCylinderActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
                                 }
                             })
                             .setNegativeButton("Kembali", new DialogInterface.OnClickListener() {
@@ -422,21 +415,21 @@ public class TotalCylinderActivity extends BaseActivity implements
         }
     }
 
-    private void showGPSDisabledAlertToUser(){
+    private void showGPSDisabledAlertToUser() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("GPS tidak diaktifkan. Sila aktifkan dahulu")
                 .setCancelable(false)
                 .setPositiveButton("Go to Settings",
-                        new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int id){
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
                                 Intent callGPSSettingIntent = new Intent(
                                         android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                                 startActivity(callGPSSettingIntent);
                             }
                         });
         alertDialogBuilder.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         finish();
                     }
@@ -448,26 +441,46 @@ public class TotalCylinderActivity extends BaseActivity implements
     public void onResume() {
         super.onResume();
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                if (googleApiClient != null) {
-                    if (!googleApiClient.isConnected()) {
-                        googleApiClient = new GoogleApiClient
-                                .Builder(this)
-                                .enableAutoManage(this, 0, this)
-                                .addApi(Places.GEO_DATA_API)
-                                .addApi(Places.PLACE_DETECTION_API)
-                                .addConnectionCallbacks(this)
-                                .addOnConnectionFailedListener(this)
-                                .build();
-                    }
-                }
+                initializeAndConnectGoogleApi();
             } else {
-                ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
             }
-        }else{
+        } else {
             Toast.makeText(this, "GPS tidak diaktifkan", Toast.LENGTH_SHORT).show();
             showGPSDisabledAlertToUser();
+        }
+
+    }
+
+    // Stop listening to avoid battery consumption and leak
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (googleApiClient != null) {
+            googleApiClient.stopAutoManage(this);
+            googleApiClient.disconnect();
+        }
+    }
+
+    private void initializeAndConnectGoogleApi() {
+        // Only create a new instance when the client is null
+        if (googleApiClient != null) {
+            googleApiClient.stopAutoManage(this);
+            googleApiClient.disconnect();
+        }
+        googleApiClient = new GoogleApiClient
+                .Builder(this)
+                .enableAutoManage(this, 0, this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        // Connect if it's not
+        if (!googleApiClient.isConnected()) {
+            googleApiClient.connect();
         }
     }
 }
