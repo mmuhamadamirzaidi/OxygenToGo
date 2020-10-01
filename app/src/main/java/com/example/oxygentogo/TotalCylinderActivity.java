@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -325,17 +327,47 @@ public class TotalCylinderActivity extends BaseActivity implements
         }
     }
 
+    private Geocoder geocoder;
+
+    private Geocoder getGeocoder() {
+        if (geocoder == null)
+            geocoder = new Geocoder(this, Locale.getDefault());
+        return geocoder;
+    }
+
+    private String extractAddressFromLocation(Place place) {
+        String addressName = "Unknow";
+        try {
+            List<Address> addresses = getGeocoder().getFromLocation(place.getLatLng().latitude, place.getLatLng().longitude, 1);
+            if (!addresses.isEmpty()) {
+                Address address = addresses.get(0);
+                // Here you can ride through each address option if null, and change to any value that ou want
+                // ex: if getThoroughfare is null then check for getSubThoroughfare and so on
+                if (address.getThoroughfare() != null) {
+                    addressName = address.getThoroughfare();
+                } else if (address.getSubThoroughfare() != null) {
+                    addressName = address.getSubThoroughfare();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Here you can change to any default value you want
+        return addressName;
+    }
+
     private void displayPlace(Place place, int requestCode) {
         if (place == null) {
             return;
         }
 
+        String address = extractAddressFromLocation(place);
         if (requestCode == 1) {
             placeStart = place;
-            buttonStart.setText(place.getName().toString());
+            buttonStart.setText(address);
         } else if (requestCode == 2) {
             placeEnd = place;
-            buttonEnd.setText(place.getName().toString());
+            buttonEnd.setText(address);
         }
     }
 
